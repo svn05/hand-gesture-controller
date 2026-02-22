@@ -1,0 +1,59 @@
+{
+    "gestures": {
+        "fist": {
+            "id": 0,
+            "action": "pause",
+            "description": "All fingers closed — pause/stop control"
+        },
+        "open_palm": {
+            "id": 1,
+            "action": "stop",
+            "description": "All fingers extended — stop all actions"
+        },
+        "pinch": {
+            "id": 2,
+            "action": "click",
+            "description": "Thumb and index finger touching — left click"
+        },
+        "point_up": {
+            "id": 3,
+            "action": "cursor_move",
+            "description": "Index finger extended — move cursor"
+        },
+        "peace": {
+            "id": 4,
+            "action": "scroll",
+            "description": "Index and middle fingers up — scroll mode"
+        },
+        "thumbs_up": {
+            "id": 5,
+            "action": "volume_up",
+            "description": "Thumb up — increase volume"
+        },
+        "thumbs_down": {
+            "id": 6,
+            "action": "volume_down",
+            "description": "Thumb down — decrease volume"
+        },
+        "swipe_left": {
+            "id": 7,
+            "action": "swipe_left",
+            "description": "Open palm moving left — previous tab/page"
+        },
+        "swipe_right": {
+            "id": 8,
+            "action": "swipe_right",
+            "description": "Open palm moving right — next tab/page"
+        },
+        "three_fingers": {
+            "id": 9,
+            "action": "screenshot",
+            "description": "Three fingers up — take screenshot"
+        }
+    },
+    "settings": {
+        "confidence_threshold": 0.7,
+        "smoothing_factor": 0.3,
+        "cooldown_ms": 300
+    }
+}
