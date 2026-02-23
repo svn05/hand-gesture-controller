@@ -10,6 +10,7 @@ Usage:
 """
 
 import argparse
+import sys
 import time
 import cv2
 import mediapipe as mp
@@ -106,22 +107,45 @@ class GestureController:
                     pyautogui.hotkey("volumedown" if hasattr(pyautogui, "volumedown") else "down")
                 self.gesture_start_time = current_time
 
+        elif gesture_name == "pause":
+            if current_time - self.gesture_start_time > self.cooldown_ms * 2:
+                if self.enable_control:
+                    pyautogui.hotkey("space")  # Pause/play media
+                self.gesture_start_time = current_time
+
+        elif gesture_name == "stop":
+            if current_time - self.gesture_start_time > self.cooldown_ms * 2:
+                if self.enable_control:
+                    pyautogui.hotkey("mediaplaypause") if sys.platform == "win32" else pyautogui.hotkey("space")
+                self.gesture_start_time = current_time
+
         elif gesture_name == "swipe_left":
             if current_time - self.gesture_start_time > self.cooldown_ms * 3:
                 if self.enable_control:
-                    pyautogui.hotkey("command", "left") if hasattr(pyautogui, "command") else pyautogui.hotkey("alt", "left")
+                    if sys.platform == "darwin":
+                        pyautogui.hotkey("command", "left")
+                    else:
+                        pyautogui.hotkey("alt", "left")
                 self.gesture_start_time = current_time
 
         elif gesture_name == "swipe_right":
             if current_time - self.gesture_start_time > self.cooldown_ms * 3:
                 if self.enable_control:
-                    pyautogui.hotkey("command", "right") if hasattr(pyautogui, "command") else pyautogui.hotkey("alt", "right")
+                    if sys.platform == "darwin":
+                        pyautogui.hotkey("command", "right")
+                    else:
+                        pyautogui.hotkey("alt", "right")
                 self.gesture_start_time = current_time
 
         elif gesture_name == "screenshot":
             if current_time - self.gesture_start_time > self.cooldown_ms * 5:
                 if self.enable_control:
-                    pyautogui.hotkey("command", "shift", "3")
+                    if sys.platform == "darwin":
+                        pyautogui.hotkey("command", "shift", "3")
+                    elif sys.platform == "win32":
+                        pyautogui.hotkey("win", "shift", "s")
+                    else:
+                        pyautogui.hotkey("print")
                 self.gesture_start_time = current_time
 
     def _update_fps(self):
